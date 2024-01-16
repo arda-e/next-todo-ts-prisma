@@ -9,6 +9,14 @@ async function handleGET(req: NextApiRequest, res: NextApiResponse) {
   res.json(todos)
 }
 
+async function handlePOST(req: NextApiRequest, res: NextApiResponse) {
+  const { name, description } = req.body
+  const newTodo = await prisma.todo.create({
+    data: { name, description },
+  })
+  res.json(newTodo)
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -16,6 +24,9 @@ export default async function handler(
   switch (req.method) {
     case 'GET':
       await handleGET(req, res)
+      break
+    case 'POST':
+      await handlePOST(req, res)
       break
     default:
       res.setHeader('Allow', ['GET', 'POST'])
