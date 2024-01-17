@@ -1,20 +1,55 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { PrismaClient } from '@prisma/client'
+import { createTodoDto } from '@/dto'
+import { db, Prisma } from '@/utils/db.server'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { ZodError } from 'zod'
 
-const prisma = new PrismaClient()
+const { PrismaClientKnownRequestError } = Prisma
 
 async function handleGET(req: NextApiRequest, res: NextApiResponse) {
-  const todos = await prisma.todo.findMany()
-  res.json(todos)
+  try {
+    const todos = await db.todo.findMany()
+    return res.status(200).json({
+      success: true,
+      data: todos,
+      message: 'Todos fetched successfully',
+    })
+  } catch (error: unknown) {
+    return res
+      .status(500)
+      .json({ success: false, error: 'Internal server error' })
+  }
 }
 
 async function handlePOST(req: NextApiRequest, res: NextApiResponse) {
-  const { name, description } = req.body
-  const newTodo = await prisma.todo.create({
-    data: { name, description },
-  })
-  res.json(newTodo)
+  try {
+    const validatedRequest = createTodoDto.parse(req.body)
+    const newTodo = await db.todo.create({ data: validatedRequest })
+    res.status(201).json({
+      success: true,
+      data: newTodo,
+      message: 'Todo created successfully',
+    })
+  } catch (error: unknown) {
+    if (error instanceof ZodError) {
+      return res.status(400).json({
+        success: false,
+        error: error.errors,
+        message: 'Invalid request data',
+      })
+    }
+    if (error instanceof PrismaClientKnownRequestError) {
+      if (error.code === 'P2002') {
+        return res.status(409).json({
+          success: false,
+          error: 'A todo with the same identifier already exists',
+        })
+      }
+    }
+    return res
+      .status(500)
+      .json({ success: false, error: 'Internal server error' })
+  }
 }
 
 export default async function handler(
