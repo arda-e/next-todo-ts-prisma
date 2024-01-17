@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Input } from '@/components'
 import { createTodoDto } from '@/dto'
 import { Todo } from '@prisma/client'
-import useCreateTodo from './useCreateTodo'
+import { useCreateTodo } from './hooks'
 
 type createTodo = Omit<Todo, 'id' | 'createdAt' | 'updatedAt'>
 
