@@ -1,16 +1,24 @@
 import React from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { createTodoDto } from '@/dto'
 import { Button, Input } from '@/components'
+import { createTodoDto } from '@/dto'
+import { Todo } from '@prisma/client'
+import useCreateTodo from './useCreateTodo'
+
+type createTodo = Omit<Todo, 'id' | 'createdAt' | 'updatedAt'>
 
 const TodoForm = () => {
-  const methods = useForm({ resolver: zodResolver(createTodoDto) })
-  const { handleSubmit } = methods
+  const methods = useForm<createTodo>({ resolver: zodResolver(createTodoDto) })
+  const { handleSubmit, formState } = methods
 
-  const isLoading = false
+  const createUser = useCreateTodo()
 
-  const onSubmit = (data: unknown) => console.log(data)
+  const onSubmit: SubmitHandler<
+    Omit<Todo, 'id' | 'createdAt' | 'updatedAt'>
+  > = async (data) => {
+    await createUser(data)
+  }
 
   return (
     <>
@@ -22,7 +30,7 @@ const TodoForm = () => {
             name="description"
             placeholder="Please enter a description."
           />
-          <Button text="Submit" type="submit" disabled={isLoading} />
+          <Button text="Submit" type="submit" disabled={formState.isLoading} />
         </form>
       </FormProvider>
     </>
