@@ -5,7 +5,7 @@ import { Button, TodoForm } from '@/components'
 const AddTodo = () => {
   const router = useRouter()
 
-  const handleNagivateBack = () => {
+  const handleNagivateToHomePage = () => {
     router.push('/')
   }
 
@@ -17,7 +17,7 @@ const AddTodo = () => {
             text="Go Back"
             type="button"
             disabled={false}
-            onclick={handleNagivateBack}
+            onclick={handleNagivateToHomePage}
           />
         </div>
         <TodoForm />

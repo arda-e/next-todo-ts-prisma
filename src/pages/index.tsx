@@ -11,6 +11,8 @@ interface GetResponse<T> {
 
 export default function Home() {
   const router = useRouter()
+
+  // TODO: Create a custom hook for fetching data
   const fetchTodos = async (url: string): Promise<GetResponse<Todo>> => {
     const res = await fetch(url)
     return res.json()
@@ -20,10 +22,12 @@ export default function Home() {
     '/api/todos',
     fetchTodos
   )
-  const handleAddTodoButtonClick = () => {
+
+  const handleNavigateToAddTodoPage = () => {
     router.push('/add-todo')
   }
 
+  // TODO: Design & implement a better ui for error & loading states
   if (error) return <div>Failed to load todos.</div>
   if (isLoading) return <div>Loading...</div>
 
@@ -35,7 +39,7 @@ export default function Home() {
         text="Add Todo"
         type="button"
         disabled={isLoading}
-        onclick={handleAddTodoButtonClick}
+        onclick={handleNavigateToAddTodoPage}
       />
       <TodoList todos={data?.data} />
     </main>
