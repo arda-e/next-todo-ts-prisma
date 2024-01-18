@@ -27,10 +27,6 @@ export default function Home() {
     router.push('/add-todo')
   }
 
-  // TODO: Design & implement a better ui for error & loading states
-  if (error) return <div>Failed to load todos.</div>
-  if (isLoading) return <div>Loading...</div>
-
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24`}
@@ -41,7 +37,7 @@ export default function Home() {
         disabled={isLoading}
         onclick={handleNavigateToAddTodoPage}
       />
-      <TodoList todos={data?.data} />
+      <TodoList todos={data?.data} error={error} isLoading={isLoading} />
     </main>
   )
 }
