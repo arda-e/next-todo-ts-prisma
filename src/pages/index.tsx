@@ -1,6 +1,7 @@
-import { TodoList } from '@/components'
+import { Button, TodoList } from '@/components'
 import useSWR from 'swr'
 import { Todo } from '@prisma/client'
+import { useRouter } from 'next/router'
 
 interface GetResponse<T> {
   success: boolean
@@ -9,6 +10,7 @@ interface GetResponse<T> {
 }
 
 export default function Home() {
+  const router = useRouter()
   const fetchTodos = async (url: string): Promise<GetResponse<Todo>> => {
     const res = await fetch(url)
     return res.json()
@@ -18,14 +20,23 @@ export default function Home() {
     '/api/todos',
     fetchTodos
   )
+  const handleAddTodoButtonClick = () => {
+    router.push('/add-todo')
+  }
 
   if (error) return <div>Failed to load todos.</div>
-  if (!isLoading) return <div>Loading...</div>
+  if (isLoading) return <div>Loading...</div>
 
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24`}
     >
+      <Button
+        text="Add Todo"
+        type="button"
+        disabled={isLoading}
+        onclick={handleAddTodoButtonClick}
+      />
       <TodoList todos={data?.data} />
     </main>
   )
