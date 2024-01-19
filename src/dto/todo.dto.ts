@@ -6,6 +6,7 @@ export const createTodoDto = z.object({
 })
 
 export const updateTodoDto = z.object({
+  id: z.coerce.number().int().positive(),
   name: z.string().min(1, 'Name is required').optional(),
   description: z.string().optional(),
 })

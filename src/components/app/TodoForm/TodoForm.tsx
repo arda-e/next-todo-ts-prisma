@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react'
+// LIBS
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Input } from '@/components'
-import { createTodoDto } from '@/dto'
-import { Todo } from '@prisma/client'
+// HOOKS
+import { useRouter } from 'next/router'
 import { useCreateTodo, useUpdateTodo } from './hooks'
-import { classNames } from '@/utils/helpers'
 import { mutate } from 'swr'
+// COMPONENTS
+import { Button, Input } from '@/components'
+// TYPES
+import { createTodoDto, updateTodoDto } from '@/dto'
+import { Todo } from '@prisma/client'
+// UTILS
+import { classNames } from '@/utils/helpers'
 
 type FormTodo = Omit<Todo, 'createdAt' | 'updatedAt'>
 
@@ -15,19 +21,19 @@ interface TodoFormProps {
 }
 
 const TodoForm = (props: TodoFormProps) => {
-  const methods = useForm<FormTodo>({ resolver: zodResolver(createTodoDto) })
+  const router = useRouter()
+  const createTodo = useCreateTodo()
+  const updateTodo = useUpdateTodo()
+
+  const methods = useForm<FormTodo>({
+    resolver: zodResolver(props.todo ? updateTodoDto : createTodoDto),
+  })
   const { handleSubmit, formState } = methods
 
-  const createUser = useCreateTodo()
-  const updateUser = useUpdateTodo()
-
   const onSubmit: SubmitHandler<FormTodo> = async (data) => {
-    if (data.id) {
-      await updateUser(data.id, data)
-    } else {
-      await createUser(data)
-      mutate('/api/todos')
-    }
+    const operation = data.id ? updateTodo(data.id, data) : createTodo(data)
+    await operation
+    data.id ? router.push(`/todos/${data.id}`) : mutate('/api/todos')
   }
 
   const registerTodo = (todo: Todo) => {
@@ -39,7 +45,7 @@ const TodoForm = (props: TodoFormProps) => {
 
   useEffect(() => {
     if (props.todo) registerTodo(props.todo)
-  })
+  }, [props.todo])
 
   return (
     <>
@@ -48,7 +54,6 @@ const TodoForm = (props: TodoFormProps) => {
           onSubmit={handleSubmit(onSubmit)}
           className={classNames('flex flex-row gap-4 items-center')}
         >
-          {/* <Heading isEditing={!!props.todo} /> */}
           <div className="flex gap-4">
             <Input
               label="Name"
