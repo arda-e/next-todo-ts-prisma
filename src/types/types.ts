@@ -3,3 +3,8 @@ export interface GetResponse<T> {
   message: string
   success: boolean
 }
+
+export interface SvgComponentProps {
+  onClick?: () => void
+  className?: string
+}
