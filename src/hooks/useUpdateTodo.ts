@@ -1,5 +1,19 @@
 import { Todo } from '@prisma/client'
 
+/**
+ * Custom hook for updating a todo by ID.
+ *
+ * @returns {function} A function to update a todo.
+ *
+ * @param {number} id - The ID of the todo to update.
+ * @param {Object} data - The updated todo data, excluding 'createdAt' and 'updatedAt'.
+ * @param {string} data.title - The updated title of the todo.
+ * @param {string} data.description - The updated description of the todo.
+ *
+ * @throws {Error} If an error occurs during the update process.
+ *
+ * @returns {Promise<Todo>} A promise that resolves with the updated todo.
+ */
 const useUpdateTodo = () => {
   const updateTodo = async (
     id: number,
