@@ -1,10 +1,16 @@
 import React from 'react'
+import NoDataSVG from './NoData.svg'
 
-// TODO: Implement no data component
 const NoData = () => {
   return (
     <>
-      <div>No Data Found</div>
+      <div
+        id="no-data-container"
+        className="flex flex-col gap-2 grow justify-center items-center"
+      >
+        <NoDataSVG />
+        <p className="text-sm font-normal">No data found</p>
+      </div>
     </>
   )
 }

@@ -36,7 +36,7 @@ export default function Home() {
         <div className="flex grow font-semibold text-lg">Add New Todo</div>
         <TodoForm />
       </div>
-      <div className="flex overflow-y-auto">
+      <div className="flex overflow-y-auto h-full">
         <TodoList todos={data?.data} error={error} isLoading={isLoading} />
       </div>
     </main>
