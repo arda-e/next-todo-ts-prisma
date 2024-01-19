@@ -1,8 +1,5 @@
 import * as React from 'react'
-
-interface SvgComponentProps {
-  onClick?: () => void
-}
+import { SvgComponentProps } from '@/types/types'
 
 const SvgComponent = (props: SvgComponentProps) => (
   <svg
