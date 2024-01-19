@@ -23,14 +23,14 @@ const TodoItem = (props: TodoItemProps) => {
         <div id="todo-item-content" className="flex flex-col gap w-full">
           <div
             id="todo-item-name"
-            className="font-medium text-lg group-hover:text-blue-700"
+            className="font-medium text-lg text-gray-800 group-hover:text-blue-700"
           >
             {props.name}
           </div>
           {props.description ? (
             <div
               id="todo-item-description"
-              className="text-sm font-normal group-hover:text-blue-700"
+              className="text-sm font-normal text-gray-800 group-hover:text-blue-700"
             >
               {props.description}
             </div>
