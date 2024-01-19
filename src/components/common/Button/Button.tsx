@@ -20,7 +20,7 @@ const Button = (props: ButtonProps) => {
           'bg-blue-700 disabled:bg-gray-500 disabled:cursor-not-allowed hover:bg-[#2e7b80 focus:outline-none',
           'transition ease-in-out duration-700',
           'text-white font-medium text-sm',
-          'flex items-center justify-center h-8 py-2 px-4 rounded-md'
+          'flex items-center justify-center h-8 py-2 px-4 rounded-md -mb-2'
         )}
         type={type}
       >
