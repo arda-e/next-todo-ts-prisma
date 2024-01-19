@@ -28,11 +28,12 @@ const useUpdateTodo = () => {
         body: JSON.stringify(data),
       })
 
-      if (!res.ok) {
-        throw new Error('Error creating todo')
+      const updatedTodo = await res.json()
+
+      if (res.status !== 200) {
+        throw new Error(`Error creating todo :${updatedTodo.message}`)
       }
 
-      const updatedTodo = await res.json()
       return updatedTodo
     } catch (error) {
       throw error
