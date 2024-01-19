@@ -52,7 +52,10 @@ const TodoForm = (props: TodoFormProps) => {
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className={classNames('flex flex-row gap-4 items-center')}
+          className={classNames(
+            'flex flex-row gap-4 items-center',
+            props.todo && 'justify-center'
+          )}
         >
           <div className="flex gap-4">
             <Input
