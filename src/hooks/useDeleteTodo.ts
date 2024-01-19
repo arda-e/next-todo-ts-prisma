@@ -26,6 +26,7 @@ const useDeleteTodo = () => {
       router.push('/')
     } catch (error) {
       console.error(error)
+      router.push('/')
     }
   }
 
