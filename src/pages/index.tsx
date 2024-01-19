@@ -1,43 +1,44 @@
-import { Button, TodoList } from '@/components'
+import { TodoForm, TodoList } from '@/components'
 import useSWR from 'swr'
 import { Todo } from '@prisma/client'
-import { useRouter } from 'next/router'
 
-interface GetResponse<T> {
+// TODO: Move to a shared folder
+export interface GetResponse<T> {
   success: boolean
-  data: T[]
+  data: T
   message: string
 }
 
 export default function Home() {
-  const router = useRouter()
-
   // TODO: Create a custom hook for fetching data
-  const fetchTodos = async (url: string): Promise<GetResponse<Todo>> => {
+  const fetchTodos = async (url: string): Promise<GetResponse<Todo[]>> => {
     const res = await fetch(url)
     return res.json()
   }
 
-  const { data, error, isLoading } = useSWR<GetResponse<Todo>>(
+  const { data, error, isLoading } = useSWR<GetResponse<Todo[]>>(
     '/api/todos',
     fetchTodos
   )
 
-  const handleNavigateToAddTodoPage = () => {
-    router.push('/add-todo')
-  }
-
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24`}
-    >
-      <Button
-        text="Add Todo"
-        type="button"
-        disabled={isLoading}
-        onclick={handleNavigateToAddTodoPage}
-      />
-      <TodoList todos={data?.data} error={error} isLoading={isLoading} />
+    <main className={`flex h-screen flex-col`}>
+      <div
+        id="add-todo-action-container"
+        className="flex w-full items-center justify-between border-b-2 bg-white border-gray-200 shadow-sm p-4"
+      >
+        <h2 className="text-2xl font-semibold">Todo List</h2>
+      </div>
+      <div
+        id="add-todo"
+        className="flex gap-2 flex-col w-full pt-4 px-4 pb-2 bg-gray-100 shadow-sm border-b-2 border-gray-200"
+      >
+        <div className="flex grow font-semibold text-lg">Add New Todo</div>
+        <TodoForm />
+      </div>
+      <div className="flex overflow-y-auto">
+        <TodoList todos={data?.data} error={error} isLoading={isLoading} />
+      </div>
     </main>
   )
 }

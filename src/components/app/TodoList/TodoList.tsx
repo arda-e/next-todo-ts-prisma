@@ -1,8 +1,8 @@
 import { Todo } from '@prisma/client'
 import React from 'react'
-import { useDeleteTodo } from './hooks'
 import { TodoItem } from '..'
-import { NoData, Loading } from '@/components'
+import { NoData, Loading, Error } from '@/components'
+import { useRouter } from 'next/router'
 
 interface TodoListProps {
   todos?: Todo[]
@@ -11,37 +11,35 @@ interface TodoListProps {
 }
 
 const TodoList = (props: TodoListProps) => {
-  const { todos, error } = props
-  const isLoading = true
-  console.log('todos', todos)
+  const { todos, error, isLoading } = props
 
-  const deleteTodo = useDeleteTodo()
+  const router = useRouter()
 
-  const handleDeleteTodo = async (id: number) => {
-    await deleteTodo(id)
+  const handleEditTodo = async (id: number) => {
+    router.push(`/edit-todo/${id}`)
   }
 
   // TODO: Design & implement a better ui for error & loading states
-  if (error) return <div>Failed to load todos.</div>
+  if (error) return <Error />
   if (isLoading) return <Loading />
   if (todos?.length == 0) return <NoData />
 
   return (
     <>
-      <div id="todo-list">
-        <h1>Todo List</h1>
-        <ul className="list-disc">
-          {todos?.map((todo) => (
-            <TodoItem
-              handleDeleteTodo={() => handleDeleteTodo(todo.id)}
-              key={todo.id}
-              description={todo.description}
-              name={todo.name}
-              createdAt={todo.createdAt}
-              updatedAt={todo.updatedAt}
-            />
-          ))}
-        </ul>
+      <div
+        id="todo-list"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 gap-4 w-full"
+      >
+        {todos?.map((todo) => (
+          <TodoItem
+            handleEditTodo={() => handleEditTodo(todo.id)}
+            key={todo.id}
+            description={todo.description}
+            name={todo.name}
+            createdAt={todo.createdAt}
+            updatedAt={todo.updatedAt}
+          />
+        ))}
       </div>
     </>
   )
