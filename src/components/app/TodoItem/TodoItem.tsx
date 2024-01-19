@@ -23,7 +23,7 @@ const TodoItem = (props: TodoItemProps) => {
       <div
         id="todo-item"
         onClick={handleTodoItemEdit}
-        className="group cursor-pointer flex border-2 bg-white p-4 border-gray-200 transition duration-300 ease-in-out hover:border-blue-600 hover:bg-blue-50 rounded-md shadow-sm"
+        className="group cursor-pointer flex border-2 min-h-20 bg-white p-4 border-gray-200 transition duration-300 ease-in-out hover:border-blue-600 hover:bg-blue-50 rounded-md shadow-sm"
       >
         <div id="todo-item-name" className="">
           {props.name}
