@@ -10,6 +10,7 @@ import {
   Error as ErrorComponent,
   Loading,
   TodoFormContainer,
+  TodoDetails,
 } from '@/components'
 
 const EditTodo = () => {
@@ -25,7 +26,8 @@ const EditTodo = () => {
   return (
     <>
       <Header text="Edit Todo" type="edit" />
-      <TodoFormContainer text="Edit Todo">
+      <TodoDetails todo={data.data} />
+      <TodoFormContainer>
         <TodoForm todo={data.data} />
       </TodoFormContainer>
     </>

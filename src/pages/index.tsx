@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className="flex h-screen flex-col">
       <Header text="Todo App" type="home" />
-      <TodoFormContainer text="Add New Todo">
+      <TodoFormContainer>
         <TodoForm />
       </TodoFormContainer>
       <div className="flex overflow-y-auto h-full">

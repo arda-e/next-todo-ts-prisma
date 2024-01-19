@@ -3,7 +3,13 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { useDeleteTodo, useGetTodo } from '@/hooks'
 // COMPONENTS
-import { Error as ErrorComponent, Loading, Header, NoData } from '@/components'
+import {
+  Error as ErrorComponent,
+  Loading,
+  Header,
+  NoData,
+  TodoDetails,
+} from '@/components'
 
 const EditTodoPage = () => {
   const router = useRouter()
@@ -40,6 +46,7 @@ const EditTodoPage = () => {
         onClickDelete={handleDeleteTodoClick}
         onClickEdit={handleNavigateToEditClick}
       />
+      <TodoDetails todo={data.data} />
     </div>
   )
 }
