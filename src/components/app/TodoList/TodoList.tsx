@@ -16,10 +16,9 @@ const TodoList = (props: TodoListProps) => {
   const router = useRouter()
 
   const handleEditTodo = async (id: number) => {
-    router.push(`/edit-todo/${id}`)
+    router.push(`/todos/${id}`)
   }
 
-  // TODO: Design & implement a better ui for error & loading states
   if (error) return <Error />
   if (isLoading) return <Loading />
   if (todos?.length == 0) return <NoData />
@@ -28,7 +27,7 @@ const TodoList = (props: TodoListProps) => {
     <>
       <div
         id="todo-list"
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 gap-4 w-full"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-8 py-6 gap-4 w-full"
       >
         {todos?.map((todo) => (
           <TodoItem
