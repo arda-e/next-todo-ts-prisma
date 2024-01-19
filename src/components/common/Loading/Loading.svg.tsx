@@ -1,8 +1,5 @@
+import { SvgComponentProps } from '@/types/types'
 import * as React from 'react'
-
-interface SvgComponentProps {
-  className?: string
-}
 
 function SvgComponent(props: SvgComponentProps) {
   return (
