@@ -46,7 +46,7 @@ const TodoForm = (props: TodoFormProps) => {
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className={classNames('flex flex-row items-between')}
+          className={classNames('flex flex-row gap-4 items-center')}
         >
           {/* <Heading isEditing={!!props.todo} /> */}
           <div className="flex gap-4">
@@ -61,13 +61,7 @@ const TodoForm = (props: TodoFormProps) => {
               placeholder="Please enter a description."
             />
           </div>
-          <div id="flex grow w-full bg-red-400">
-            <Button
-              text="Submit"
-              type="submit"
-              disabled={formState.isLoading}
-            />
-          </div>
+          <Button text="Submit" type="submit" disabled={formState.isLoading} />
         </form>
       </FormProvider>
     </>
