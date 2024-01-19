@@ -20,7 +20,7 @@ const EditTodoPage = () => {
     await deleteTodo(parseInt(id as string))
   }
 
-  const handleNavigateToEditClick = async () => {
+  const handleNavigateToEditClick = () => {
     if (!id) {
       console.error('No id found')
       return
