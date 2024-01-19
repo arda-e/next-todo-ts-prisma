@@ -69,7 +69,11 @@ const TodoForm = (props: TodoFormProps) => {
               placeholder="Please enter a description."
             />
           </div>
-          <Button text="Submit" type="submit" disabled={formState.isLoading} />
+          <Button
+            text="Submit"
+            type="submit"
+            disabled={formState.isSubmitting}
+          />
         </form>
       </FormProvider>
     </>
