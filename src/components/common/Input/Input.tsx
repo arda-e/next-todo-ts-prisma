@@ -25,7 +25,7 @@ const Input = ({ label, name, placeholder }: InputProps) => {
           className={classNames(
             'bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500',
             'text-gray-900 text-sm',
-            'apply rounded-lg block w-full p-1.5'
+            'rounded-lg block w-full p-1.5'
           )}
           id={name}
           type="text"
