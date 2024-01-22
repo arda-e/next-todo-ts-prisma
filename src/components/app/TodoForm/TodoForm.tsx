@@ -28,19 +28,26 @@ const TodoForm = (props: TodoFormProps) => {
   const methods = useForm<FormTodo>({
     resolver: zodResolver(props.todo ? updateTodoDto : createTodoDto),
   })
+  
   const { handleSubmit, formState } = methods
 
   const onSubmit: SubmitHandler<FormTodo> = async (data) => {
+    // Determine whether to update or create a todo based on 'data.id'.
     const operation = data.id ? updateTodo(data.id, data) : createTodo(data)
     await operation
+    // Redirect to the todo's detail page if it's an update, or refresh the todo list.
     data.id ? router.push(`/todos/${data.id}`) : mutate('/api/todos')
   }
 
+  /*
+  * @name registerTodo
+  * @description If a todo exists register the values in react-hook-form if it's null return
+  */
   const registerTodo = (todo: Todo) => {
     if (!todo) return
     methods.setValue('name', todo.name)
     methods.setValue('description', todo.description)
-    if (todo.id) methods.setValue('id', todo.id)
+    if (todo.id) methods.setValue('id', todo.id) // TODO: Check if a conditional is required in this line
   }
 
   useEffect(() => {
