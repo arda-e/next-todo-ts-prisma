@@ -1,8 +1,8 @@
-import { Todo } from '@prisma/client'
 import React from 'react'
-import { TodoItem } from '..'
-import { NoData, Loading, Error } from '@/components'
 import { useRouter } from 'next/router'
+import { Todo } from '@prisma/client'
+import { NoData, Loading, Error } from '@/components'
+import { TodoItem } from '..'
 
 interface TodoListProps {
   todos?: Todo[]
