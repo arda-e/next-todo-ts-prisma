@@ -27,7 +27,7 @@ const TodoList = (props: TodoListProps) => {
     <>
       <div
         id="todo-list"
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-min px-8 py-6 gap-4 w-full"
+        className="grid w-full auto-rows-min grid-cols-1 gap-4 px-8 py-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
         {todos?.map((todo) => (
           <TodoItem

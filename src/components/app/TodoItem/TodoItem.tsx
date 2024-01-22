@@ -18,12 +18,12 @@ const TodoItem = (props: TodoItemProps) => {
       <div
         id="todo-item"
         onClick={handleTodoItemEdit}
-        className="group cursor-pointer flex border-2 min-h-24 h-20 bg-white p-4 border-gray-200 transition duration-300 ease-in-out hover:border-blue-600 hover:bg-blue-50 rounded-md shadow-sm"
+        className="group flex h-20 min-h-24 cursor-pointer rounded-md border-2 border-gray-200 bg-white p-4 shadow-sm transition duration-300 ease-in-out hover:border-blue-600 hover:bg-blue-50"
       >
-        <div id="todo-item-content" className="flex flex-col gap w-full">
+        <div id="todo-item-content" className="gap flex w-full flex-col">
           <div
             id="todo-item-name"
-            className="font-medium text-lg text-gray-800 group-hover:text-blue-700"
+            className="text-lg font-medium text-gray-800 group-hover:text-blue-700"
           >
             {props.name}
           </div>

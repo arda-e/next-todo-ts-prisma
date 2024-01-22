@@ -28,7 +28,7 @@ const TodoForm = (props: TodoFormProps) => {
   const methods = useForm<FormTodo>({
     resolver: zodResolver(props.todo ? updateTodoDto : createTodoDto),
   })
-  
+
   const { handleSubmit, formState } = methods
 
   const onSubmit: SubmitHandler<FormTodo> = async (data) => {
@@ -40,9 +40,9 @@ const TodoForm = (props: TodoFormProps) => {
   }
 
   /*
-  * @name registerTodo
-  * @description If a todo exists register the values in react-hook-form if it's null return
-  */
+   * @name registerTodo
+   * @description If a todo exists register the values in react-hook-form if it's null return
+   */
   const registerTodo = (todo: Todo) => {
     if (!todo) return
     methods.setValue('name', todo.name)
@@ -60,7 +60,7 @@ const TodoForm = (props: TodoFormProps) => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={classNames(
-            'flex flex-row gap-4 items-center',
+            'flex flex-row items-center gap-4',
             props.todo && 'justify-center'
           )}
         >

@@ -7,7 +7,7 @@ const Loading = () => {
       <div className="flex h-screen grow flex-col items-center justify-center">
         <div
           id="loading"
-          className="flex flex-col items-center justify-center h-20"
+          className="flex h-20 flex-col items-center justify-center"
         >
           <div className="animate-spin">
             <LoadingSVG className="amimate-spin fill-blue-700" />

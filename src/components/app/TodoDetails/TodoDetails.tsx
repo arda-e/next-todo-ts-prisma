@@ -10,7 +10,7 @@ const TodoDetails = (props: TodoDetailsProps) => {
   const updatedAtDate = new Date(props.todo.updatedAt)
   return (
     <>
-      <div className="flex flex-row gap-4 py-4 px-8 bg-white border-b-2 border-gray-200 justify-center">
+      <div className="flex flex-row justify-center gap-4 border-b-2 border-gray-200 bg-white px-8 py-4">
         <Attribute name="Name" value={props.todo.name} />
         <Attribute name="Description" value={props.todo.description} />
         <Attribute name="Create Time" value={createdAtDate.toDateString()} />

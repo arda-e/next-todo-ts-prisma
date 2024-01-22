@@ -5,8 +5,8 @@ interface AttributeProps {
 const Attribute = ({ name, value = '-' }: AttributeProps) => {
   return (
     <>
-      <div className="flex gap flex-col">
-        <h3 className="flex grow font-semibold text-lg">{name}</h3>
+      <div className="gap flex flex-col">
+        <h3 className="flex grow text-lg font-semibold">{name}</h3>
         <p className="text-gray-500">{value}</p>
       </div>
     </>

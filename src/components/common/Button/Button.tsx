@@ -17,11 +17,11 @@ const Button = (props: ButtonProps) => {
         onClick={onclick}
         disabled={disabled}
         className={classNames(
-          'bg-blue-700 disabled:bg-gray-500 disabled:cursor-not-allowed hover:bg-[#2e7b80] focus:outline-none',
-          disabled && 'bg-gray-500 cursor-not-allowed',
-          'transition ease-in-out duration-700',
-          'text-white font-medium text-sm',
-          'flex items-center justify-center h-8 py-2 px-4 rounded-md -mb-2'
+          'bg-blue-700 hover:bg-[#2e7b80] focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-500',
+          disabled && 'cursor-not-allowed bg-gray-500',
+          'transition duration-700 ease-in-out',
+          'text-sm font-medium text-white',
+          '-mb-2 flex h-8 items-center justify-center rounded-md px-4 py-2'
         )}
         type={type}
       >

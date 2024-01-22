@@ -6,7 +6,7 @@ const NoData = () => {
     <>
       <div
         id="no-data-container"
-        className="flex flex-col gap-2 grow justify-center items-center"
+        className="flex grow flex-col items-center justify-center gap-2"
       >
         <NoDataSVG />
         <p className="text-sm font-normal">No data found</p>

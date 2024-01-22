@@ -27,13 +27,13 @@ const Header = (props: HeaderProps) => {
     <>
       <div
         id="header"
-        className="flex w-full items-center justify-between border-b-2 bg-white border-gray-200 shadow-sm p-4 px-8 h-16"
+        className="flex h-16 w-full items-center justify-between border-b-2 border-gray-200 bg-white p-4 px-8 shadow-sm"
       >
         {isHomeType ? null : (
           <div
             id="header__logo-text"
             className={classNames(
-              'flex gap-4 items-center',
+              'flex items-center gap-4',
               isEditType && 'flex-1'
             )}
           >
@@ -44,7 +44,7 @@ const Header = (props: HeaderProps) => {
 
         <h2
           className={classNames(
-            'text-2xl font-semibold flex-1 text-gray-800',
+            'flex-1 text-2xl font-semibold text-gray-800',
             !isHomeType && 'text-center'
           )}
         >

@@ -9,7 +9,7 @@ const TodoFormContainer = (props: TodoFormContainerProps) => {
     <>
       <div
         id="add-todo"
-        className="flex gap-2 flex-col w-full pt-4 px-8 pb-2 bg-gray-100 shadow-sm border-b-2 border-gray-200"
+        className="flex w-full flex-col gap-2 border-b-2 border-gray-200 bg-gray-100 px-8 pb-2 pt-4 shadow-sm"
       >
         {props.children}
       </div>

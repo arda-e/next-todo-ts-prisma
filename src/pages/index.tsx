@@ -14,7 +14,7 @@ export default function Home() {
       <TodoFormContainer>
         <TodoForm />
       </TodoFormContainer>
-      <div className="flex overflow-y-auto h-full">
+      <div className="flex h-full overflow-y-auto">
         <TodoList todos={data?.data} error={error} isLoading={isLoading} />
       </div>
     </main>

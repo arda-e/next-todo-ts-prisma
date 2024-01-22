@@ -16,16 +16,16 @@ const Input = ({ label, name, placeholder }: InputProps) => {
     <>
       <div className="mb-4">
         <label
-          className="block text-gray-700 text-sm font-semibold mb-1"
+          className="mb-1 block text-sm font-semibold text-gray-700"
           htmlFor={name}
         >
           {label}
         </label>
         <input
           className={classNames(
-            'bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500',
-            'text-gray-900 text-sm',
-            'rounded-lg block w-full p-1.5'
+            'border border-gray-300 bg-gray-50 focus:border-blue-500 focus:ring-blue-500',
+            'text-sm text-gray-900',
+            'block w-full rounded-lg p-1.5'
           )}
           id={name}
           type="text"
@@ -33,7 +33,7 @@ const Input = ({ label, name, placeholder }: InputProps) => {
           {...register(name)}
         />
         {inputError ? (
-          <p className="text-red-500 text-xs pt-2">{inputError}</p>
+          <p className="pt-2 text-xs text-red-500">{inputError}</p>
         ) : null}
       </div>
     </>
