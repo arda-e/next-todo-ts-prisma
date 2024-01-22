@@ -2,8 +2,8 @@ Simple To Do List App
 
 ## Requirements
 
-Node.js 18+
-DB
+- Node.js 18+
+- DB
  - Option 1: Run in a Docker container
    Link to the official docker setup documentation: https://docs.docker.com/get-docker/
  - Option 2: Run a local Postgresql db instance.
